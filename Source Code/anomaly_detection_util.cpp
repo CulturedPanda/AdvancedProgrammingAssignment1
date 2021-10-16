@@ -1,5 +1,5 @@
 /*
-    anomaly_detection_util.cpp
+     anomaly_detection_util.cpp
 
     Authors:
     1. Yuval Uner ID: 322558842
@@ -54,10 +54,10 @@ Line linear_reg(Point** points, int size) {
 // returns the deviation between point p and the line equation of the points 
 float dev(Point p, Point** points, int size) {
     Line line = linear_reg(points, size);
-    return float deviation = abs(line.f - p.y);
+    return float deviation = abs(line.f(p.x) - p.y);
 }
 
 // returns the deviation between point p and the line 
 float dev(Point p, Line l) {
-    return abs(l.f - p.y);
+    return abs(l.f(p.x) - p.y);
 }
