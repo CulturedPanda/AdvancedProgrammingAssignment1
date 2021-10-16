@@ -1,3 +1,11 @@
+/*
+    anomaly_detection_util.cpp
+
+    Authors:
+    1. Yuval Uner ID: 322558842
+    2. Nadav Elgrabli ID: 316082791
+*/
+
 #include "anomaly_detection_util.h"
 #include <math.h>
 
