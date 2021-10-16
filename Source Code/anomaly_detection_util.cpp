@@ -1,11 +1,9 @@
 /*
      anomaly_detection_util.cpp
-
     Authors:
     1. Yuval Uner ID: 322558842
     2. Nadav Elgrabli ID: 316082791
 */
-
 #include "anomaly_detection_util.h"
 #include <math.h>
 
@@ -41,20 +39,23 @@ float pearson(float* x, float* y, int size) {
 }
 
 Line linear_reg(Point** points, int size) {
-    float xValues[size];
-    float yValues[size];
+    float* xValues = new float[size];
+    float* yValues = new float[size];
     for (int i = 0; i < size; i++) {
         xValues[i] = points[i]->x;
         yValues[i] = points[i]->y;
     }
     float a = cov(xValues, yValues, size) / var(xValues, size);
     float b = getAvg(yValues, size) - (a * getAvg(xValues, size));
+    delete[] xValues;
+    delete[] yValues;
     return Line(a, b);
 }
 // returns the deviation between point p and the line equation of the points 
 float dev(Point p, Point** points, int size) {
     Line line = linear_reg(points, size);
-    return float deviation = abs(line.f(p.x) - p.y);
+    float deviation = abs(line.f(p.x) - p.y);
+    return deviation;
 }
 
 // returns the deviation between point p and the line 
