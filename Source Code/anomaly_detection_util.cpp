@@ -9,6 +9,7 @@
 #include "anomaly_detection_util.h"
 #include <math.h>
 
+// 
 float var(float* x, int size) {
     float miu = getAvg(x, size);
     float var = 0;
