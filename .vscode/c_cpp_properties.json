@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${default}",
-                "${workspaceFolder}/HeaderFiles"
+                "${workspaceFolder}/HeaderFiles",
+                "${workspaceFolder}/Header Files"
             ],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "gnu17",
