@@ -10,8 +10,19 @@
 
 using namespace std;
 
+// Returns the absolute value of a float
+float absValue(float val){
+    if (val < 0){
+        return -val;
+    }
+    return val;
+}
+
 // Returns the mathematical average of from an array of floats
 float getAvg(float* x, int size) {
+    if (size <= 0){
+        throw "Size must be a positive integer";
+    }
     float miu = 0;
     for (int i = 0; i < size; i++) {
         miu += x[i];
@@ -21,16 +32,22 @@ float getAvg(float* x, int size) {
 
 // returns the variance of X and Y 
 float var(float* x, int size) {
+    if (size <= 0){
+        throw "Size must be a positive integer";
+    }
     float miu = getAvg(x, size);
     float var = 0;
     for (int i = 0; i < size; i++) {
-        var += std::pow((x[i] - miu), 2);
+        var += pow((x[i] - miu), 2);
     }
     return var / size;
 }
 
 // returns the covariance of X and Y 
 float cov(float* x, float* y, int size) {
+    if (size <= 0){
+        throw "Size must be a positive integer";
+    }
     float xAvg = getAvg(x, size);
     float yAvg = getAvg(y, size);
     float getE = 0;
@@ -42,7 +59,7 @@ float cov(float* x, float* y, int size) {
 
 // returns the Pearson correlation coefficient of X and Y 
 float pearson(float* x, float* y, int size) {
-    return cov(x, y, size) / (std::sqrt(var(x, size)) * std::sqrt(var(y, size)));
+    return cov(x, y, size) / (sqrt(var(x, size)) * sqrt(var(y, size)));
 }
 
 // performs a linear regression and return s the line equation 
@@ -62,14 +79,16 @@ Line linear_reg(Point** points, int size) {
 // returns the deviation between point p and the line equation of the points 
 float dev(Point p, Point** points, int size) {
     Line line = linear_reg(points, size);
-    float deviation = std::abs(line.f(p.x) - p.y);
+    float deviation = absValue(line.f(p.x) - p.y);
     return deviation;
 }
 
 // returns the deviation between point p and the line 
 float dev(Point p, Line l) {
-    return std::abs(l.f(p.x) - p.y);
+    return absValue(l.f(p.x) - p.y);
 }
+
+//-----------------------------------------------------------------------
 
 bool wrong(float val, float expected){
 	return val<expected-0.001 || val>expected+0.001;
